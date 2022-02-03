@@ -1,26 +1,48 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Start blogging"
 date:   2022-01-25 11:17:24 +0100
 categories: jekyll update
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+# Bootstrapping under nixos
 
-Jekyll requires blog post files to be named according to the following format:
+```fish
+mkdir ngiger-jekyll
+cd ngiger-jekyllo
+nix-shell -p zlib bundler git ruby --command fish
+jekyll new blog
+Running bundle install in /opt/src/ngiger-jekyll/blog4...
+Bundler: Skipping "bundle install" as it fails due to the Nix wrapper.
+Bundler: Please enter the new directory and run the following commands to serve the page:
+Bundler: nix-shell -p bundler --run "bundle install --gemfile=Gemfile --path vendor/cache"
+Bundler: nix-shell -p bundler --run "bundle exec jekyll serve"
+cd blog
+bundler install
+bundle exec jekyll server --port 4050
+ ```
 
-`YEAR-MONTH-DAY-title.MARKUP`
+# Bootstrapping nixops version 2.0
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+```
+nixops create -d nuc
+cd /etc/nixos/hosts/nuc
+nixops deploy -d nuc --test
+# test the system and if everythins is okay install and reboot
+nixops deploy -d nuc --boot
+nixops deploy -d nuc --force-reboot
+```
 
-Jekyll also offers powerful support for code snippets:
+Hatte die Fehlermeldung `nuc> warning: unable to download 'https://cache.nixos.org/nix-cache-info': Couldn't resolve host name (6); retrying in 276 mss`
+Gelöst mit `rm $HOME/.cache/nix/binary-cache-v*.sqlite*` auf `nuc`
+https://oddco.de/post/private-server/
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+
+# TODO: 
+
+* https://kevq.uk/how-to-add-search-jekyll
+* https://blog.webjeda.com/jekyll-search/
+
+# More info about Jekyll (part of github-pages) used to build this site
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 

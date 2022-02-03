@@ -18,16 +18,15 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
+title: Niklaus Giger blog about NixOS and Elexis
+email: niklaus.giger@member.fsf.org
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Starting at the tender age of 66 and working over 10 years for elexis
+  and using since end 2019 NixOS decided in Januar 2022 to start blogging about
+  his experiences with Elexis and NixOS
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  ngiger
 
 # Build settings
 theme: minima
